@@ -1,0 +1,11 @@
+{
+    "editor.inlineSuggest.enabled": false,
+    "editor.inlineSuggest.showToolbar": "never",
+    "editor.quickSuggestionsDelay": 200,
+    "[plaintext]": {
+        "editor.quickSuggestionsDelay": 200,
+        "editor.quickSuggestions": {
+            "other": "off"
+        }
+    }
+}
