@@ -1,0 +1,3 @@
+- Currently we're developing straight in JavaScript and not using compilation steps, so we're running straight out of the 'src' dir.
+- but I put a 'dist' dir for near-future use...
+
