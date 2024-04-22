@@ -31,15 +31,45 @@ SO .. If we want a fix for this, a good solution may be simply to set up everyth
 [1mCreating a virtualenv for this project...[0m
 Pipfile: [33m[1m/ccode/django_proj_1/Pipfile[0m
 [1mUsing[0m [33m[1m/usr/bin/python3[0m [32m(3.11.4)[0m [1mto create virtualenv...[0m
-[?25l[32m⠋[0m Creating virtual environment...[2K[32m⠙[0m Creating virtual environment...[2K[32m⠹[0m Creating virtual environment...[2K[32m⠸[0m Creating virtual environment...[36mcreated virtual environment CPython3.11.4.final.0-64 in 171ms
+[?25l[32m⠋[0m Creating virtual environment...
+[2K[32m⠙[0m Creating virtual environment...
+[2K[32m⠹[0m Creating virtual environment...
+[2K[32m⠸[0m Creating virtual environment...[36mcreated virtual environment CPython3.11.4.final.0-64 in 171ms
   creator CPython3Posix(dest=/ccode/django_proj_1/.venv, clear=False, no_vcs_ignore=False, global=False)
   seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/home/xemc/.local/share/virtualenv)
     added seed packages: pip==23.0.1, setuptools==66.1.1, wheel==0.38.4
   activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
 [0m
 ✔ Successfully created virtual environment!
-[2K[32m⠸[0m Creating virtual environment...
-[?25h[1A[2K[32mVirtualenv location: /ccode/django_proj_1/.venv[0m
+
+[2K[32m⠸[0m Creating virtual environment...
+[?25h
+[1A[2K[32mVirtualenv location: /ccode/django_proj_1/.venv[0m
 Launching subshell in virtual environment...
  . /ccode/django_proj_1/.venv/bin/activate
 ```
+
+
+Next, it mentions "Note: Verify you are in the directory where the manage.py file resides."
+and running with:
+```
+python3 manage.py makemigrations # To compile the migrations
+python3 manage.py migrate  # To migrate the changes in Database
+```
+
+To-Do: Modify manage.py to use a shebang with python3, and set the executable bit so we can instead
+./manage.py migrate
+
+# Note: Noticed vscode constantly giving autosuggestions inside of this text file!
+# So, it's now configured it to stop that; see .vscode/settings.json
+
+So, for labs:
+ - makemigrations
+ - migrate
+ - runserver   # probably running on http://localhost:8000
+
+ To-Do: Create my own './do' script for these... (even better than chmod on a python file)
+
+
+ ??  CSS & 'Go Live' feature (aka Browser Preview), localhost:5500
+  # looks like this uses an Extension 'Live Server'
