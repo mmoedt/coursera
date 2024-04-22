@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo "v18" > .nvmrc
+source my-env.sh
+nvm install
+# nvm use # if already installed..
+
+# maybe?:
+npm init -y &&
+npm install -D typescript &&
+npm install -D yarn
+

@@ -1,0 +1,128 @@
+#!/bin/bash
+
+# Load helper functions and globals; note that the function 'run-do-script' still needs to be called
+source ./.do.sh
+
+# Environment setup:  (Needed for most functions)  but quietly
+ENV_FILE="${ENV_FILE:-my-env.sh}"
+if [ -e "${ENV_FILE}" ]; then
+    debug 1 "Loading environment settings from '${ENV_FILE}'.."
+    # shellcheck source=./my-env.sh
+    QUIET=1  # enh: quiet++
+    source "${ENV_FILE}" > /dev/null
+    QUIET=0
+fi
+
+#
+# Helper functions
+#
+banner() {
+    if [ -x $(which figlet) ]; then
+        figlet "$@"
+    else
+        echo "####################"
+        echo "$@"
+        echo "####################"
+    fi
+}
+
+# orm() {
+#     yarn typeorm -d ./src/database/dataSource.ts $@
+# }
+
+#
+# Commands (functions starting with 'do-')
+#
+
+do-help() {
+    show_usage
+    # Append a little extra info:
+    cat <<EOF
+
+Environment variables used:
+   ENV_FILE: [default: my-env.sh]
+       - bash script sourced (if it exists) to load your particular environment variables & overrides
+EOF
+}
+
+do-build() {
+    npm run build
+}
+
+do-start() {
+    npm install &&
+    npm run build &&
+    npm run main
+}
+
+do-run() {
+    npm run main
+}
+
+# do-migration-gen() {
+#     if [ "${1}" = "" ]; then
+#         echo "Please specify the name to be used in the migration being generated."
+#         echo -e "\nUsage: ${0} migration-gen <name>\n"
+#         return 1
+#     fi
+
+#     NAME="${1}"
+
+#     # Note: yarn doesn't seem to support passing the name variable in
+#     #local CMD="npm run migration:generate --name=${NAME}"
+#     #local CMD="npm run orm log"
+#     echo "Running '${CMD}'..."
+#     eval "${CMD}"
+# }
+
+do-pre-push() {
+    # sls offline start
+    banner lint:fix &&
+        npm run lint:fix &&
+        banner format:fix &&
+        npm run format:fix &&
+        banner build test with install &&
+        npm run install &&
+        npm run build &&
+        banner OK to build test &&
+        banner show migrations &&
+        orm migration:show &&
+        banner show schema diffs DISABLED &&
+        # orm schema:log &&
+        banner test:unit &&
+        npm run test:unit &&
+        banner test:integration DISABLED &&
+        # npm run test:integration &&
+        banner LAST: serverless run test &&
+        npm run run:local
+    banner pre-push done
+}
+
+do-tests() {
+    true &&
+        banner test:unit &&
+        npm run test:unit &&
+        banner test:integration &&
+        npm run test:integration
+}
+
+do-yaml() {
+    if check_if_used_help_but_no_args; then return 1; fi
+
+    debug 1 "Running yamllint on the CI config file..."
+    yamllint .gitlab-ci.yml
+
+    debug 0 "Skipping yamllint on serverless for now..."
+    #debug 1 "Running yamllint on the serverless config file..."
+    #yamllint serverless.yml
+}
+
+env-tests() {
+    debug 1 "No environment tests currently defined.  Proceeding..."
+    # Maybe double-check NPM_TREEZ_TOKEN, availability or version of npm or yarn, etc.
+
+    return 0
+}
+
+# Run the script using all the above defined functions
+run-do-script $@
