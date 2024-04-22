@@ -1,0 +1,45 @@
+
+The setup instructions include:
+(under "Working with labs and exercises in this course")
+
+--
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+pipenv shell
+pipenv install
+--
+
+Note:  It doesn't mention that these need to be run in a terminal; adding to a script doesn't quite work right,
+as the 'pipenv install' should be run inside the shell environment created by 'pipenv shell'.
+
+Also, `cd /home/coder/project/YOUR_DJANGO_PROJECT` is pretty horrible!
+I much prefer a directory like '/code/my-project-1'.  (I can set up /code as a mount point or a symlink to somewhere in my home folder if desired.  This is since I'm the owner of the machine and filesystem.. if I weren't, I could be running inside a docker container or similar and have access that way)
+
+
+# A problem with the above setup is that it creates virtual environment files under your home directory.
+I much prefer to keep things like the virtual environment, or any settings and other dependencies, next to the project.
+You can set an env var like so:
+
+export PIPENV_VENV_IN_PROJECT=1
+
+So now .venv is created in the project dir, but it looks like virtualenv is still putting something in my home dir. (~/.local/share/virtualenv)
+SO .. If we want a fix for this, a good solution may be simply to set up everything inside of a docker container...
+
+```
+[1mCreating a virtualenv for this project...[0m
+Pipfile: [33m[1m/ccode/django_proj_1/Pipfile[0m
+[1mUsing[0m [33m[1m/usr/bin/python3[0m [32m(3.11.4)[0m [1mto create virtualenv...[0m
+[?25l[32m⠋[0m Creating virtual environment...[2K[32m⠙[0m Creating virtual environment...[2K[32m⠹[0m Creating virtual environment...[2K[32m⠸[0m Creating virtual environment...[36mcreated virtual environment CPython3.11.4.final.0-64 in 171ms
+  creator CPython3Posix(dest=/ccode/django_proj_1/.venv, clear=False, no_vcs_ignore=False, global=False)
+  seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/home/xemc/.local/share/virtualenv)
+    added seed packages: pip==23.0.1, setuptools==66.1.1, wheel==0.38.4
+  activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
+[0m
+✔ Successfully created virtual environment!
+[2K[32m⠸[0m Creating virtual environment...
+[?25h[1A[2K[32mVirtualenv location: /ccode/django_proj_1/.venv[0m
+Launching subshell in virtual environment...
+ . /ccode/django_proj_1/.venv/bin/activate
+```
