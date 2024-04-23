@@ -1,0 +1,23 @@
+{
+    "name": "hello2",
+    "version": "1.0.0",
+    "description": "hello2",
+    "keywords": [],
+    "author": "MikeM (mmoedt@gmail.com)",
+    "license": "MIT",
+    "main": "src/main.js",
+    "scripts": {
+        "check": "npm run lint && npm run format",
+        "format": "prettier --check src",
+        "format:fix": "prettier --write src",
+        "lint": "eslint src/**/*.js",
+        "lint:fix": "eslint src/**/*.js --fix",
+        "main": "cd src; node main.js",
+        "start": "npm run main",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "devDependencies": {
+        "eslint": "^9.1.1",
+        "prettier": "^3.2.5"
+    }
+}

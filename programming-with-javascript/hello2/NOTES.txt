@@ -1,0 +1,14 @@
+Simplified setup here,
+
+- Copied over 'do' and '.do.sh' helpers, which I had used before, and stripped out unneeded stuff
+- We'll run the code without a build step, straight from the src/ directory
+- Using Node v20.  Installed with 'nvm install' (after using bootstrap-nvm.sh helper)
+- npm init -y
+- # then add a 'start' script to package.json, make misc updates
+- # then added entries for 'format' and 'lint' options...
+- npm install -D eslint prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-airbnb-base eslint-config-prettier eslint-plugin-import eslint-plugin-prettier
+- # yikes, are all the above needed or helpful?
+- copied over prettier and eslint config from previous projects..
+
+
+
