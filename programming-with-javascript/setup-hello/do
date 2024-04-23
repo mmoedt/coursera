@@ -124,7 +124,7 @@ do-tests() {
 
 env-tests() {
     debug 1 "No environment tests currently defined.  Proceeding..."
-    # Maybe double-check NPM_TREEZ_TOKEN, availability or version of npm or yarn, etc.
+    # Maybe double-check NPM_XXX_TOKEN, availability or version of npm or yarn, etc.
 
     return 0
 }
