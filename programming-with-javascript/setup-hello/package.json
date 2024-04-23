@@ -1,18 +1,20 @@
 {
-  "name": "setup-hello",
-  "version": "1.0.0",
-  "description": "Hello World style program to demonstrate node.js setup",
-  "author": "MikeM (mmoedt@gmail.com)",
-  "license": "MIT",
-  "main": "index.js",
-  "scripts": {
-    "build": "true",
-    "main": "npm run build && node src/index.js",
-    "test": "node src/tests.js"
-  },
-  "devDependencies": {
-    "eslint": "^9.1.1",
-    "prettier": "^3.2.5",
-    "typescript": "^5.4.5"
-  }
+    "name": "setup-hello",
+    "version": "1.0.0",
+    "description": "Hello World style program to demonstrate node.js setup",
+    "author": "MikeM (mmoedt@gmail.com)",
+    "license": "MIT",
+    "main": "index.js",
+    "scripts": {
+        "build": "true",
+        "main": "npm run build && npm run run:main",
+        "run:main": "node src/index.js",
+        "test:unit": "node src/tests.js",
+        "test:integration": "echo 'Sorry, no integration tests..'"
+    },
+    "devDependencies": {
+        "eslint": "^9.1.1",
+        "prettier": "^3.2.5",
+        "typescript": "^5.4.5"
+    }
 }

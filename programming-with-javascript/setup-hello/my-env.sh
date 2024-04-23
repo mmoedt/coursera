@@ -2,12 +2,12 @@
 [ -e '../shared-env.sh' ] && source '../shared-env.sh'
 
 THIS_DIR=$(cd $(dirname "${BASH_SOURCE[0]}"); pwd)
-# FIXME:
-MY_SSH_KEY_FILE="${THIS_DIR}/my-xxx-dev-gitlab.id_rsa"
 
-# 1. Set this env variable needed by our Node.js projects:
-# FIXME:
-export NPM_XXX_TOKEN="{some-uuid-style-value}"
+# FIXME: Update and uncomment once this is needed
+# MY_SSH_KEY_FILE="${THIS_DIR}/my-xxx-dev-gitlab.id_rsa"
+
+# # 1. Set this env variable needed by our Node.js projects:
+# export NPM_XXX_TOKEN="{some-uuid-style-value}"
 
 # 2. Tweak the system 'max_user_watches' to avoid errors
 MIN_MUW_SETTING="${MIN_MUW_SETTING:-150100}"
@@ -19,12 +19,13 @@ then
     sudo sysctl -w ${FSKEY}=${MIN_MUW_SETTING}
 fi
 
-# 3. Load SSH keys into our ssh-agent, starting it if needed
-if [ -e "${SSH_AUTH_SOCK}" ] && [ -n "$(ps -p ${SSH_AGENT_PID} -o pid=)" ]
-then : # ssh agent set up already
-else eval $(ssh-agent -s)
-fi
-ssh-add "${MY_SSH_KEY_FILE}"
+# FIXME: Uncomment once this is needed
+# # 3. Load SSH keys into our ssh-agent, starting it if needed
+# if [ -e "${SSH_AUTH_SOCK}" ] && [ -n "$(ps -p ${SSH_AGENT_PID} -o pid=)" ]
+# then : # ssh agent set up already
+# else eval $(ssh-agent -s)
+# fi
+# ssh-add "${MY_SSH_KEY_FILE}"
 
 # <NVM-RELATED>
 export XDG_CONFIG_HOME="${THIS_DIR}"

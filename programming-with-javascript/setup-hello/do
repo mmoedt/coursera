@@ -52,11 +52,16 @@ do-build() {
 do-start() {
     npm install &&
     npm run build &&
-    npm run main
+    do-run
 }
 
 do-run() {
-    npm run main
+    echo "------------------------------"
+    # npm run run:main
+    # We want just the output, without the NPM overhead;
+    # WARN: duplication here, could get out of sync (see also package.json)
+    node src/index.js
+    echo "------------------------------"
 }
 
 # do-migration-gen() {
@@ -75,28 +80,28 @@ do-run() {
 #     eval "${CMD}"
 # }
 
-do-pre-push() {
-    # sls offline start
-    banner lint:fix &&
-        npm run lint:fix &&
-        banner format:fix &&
-        npm run format:fix &&
-        banner build test with install &&
-        npm run install &&
-        npm run build &&
-        banner OK to build test &&
-        banner show migrations &&
-        orm migration:show &&
-        banner show schema diffs DISABLED &&
-        # orm schema:log &&
-        banner test:unit &&
-        npm run test:unit &&
-        banner test:integration DISABLED &&
-        # npm run test:integration &&
-        banner LAST: serverless run test &&
-        npm run run:local
-    banner pre-push done
-}
+# do-pre-push() {
+#     # sls offline start
+#     banner lint:fix &&
+#         npm run lint:fix &&
+#         banner format:fix &&
+#         npm run format:fix &&
+#         banner build test with install &&
+#         npm run install &&
+#         npm run build &&
+#         banner OK to build test &&
+#         banner show migrations &&
+#         orm migration:show &&
+#         banner show schema diffs DISABLED &&
+#         # orm schema:log &&
+#         banner test:unit &&
+#         npm run test:unit &&
+#         banner test:integration DISABLED &&
+#         # npm run test:integration &&
+#         banner LAST: serverless run test &&
+#         npm run run:local
+#     banner pre-push done
+# }
 
 do-tests() {
     true &&
@@ -106,16 +111,16 @@ do-tests() {
         npm run test:integration
 }
 
-do-yaml() {
-    if check_if_used_help_but_no_args; then return 1; fi
+# do-yaml() {
+#     if check_if_used_help_but_no_args; then return 1; fi
 
-    debug 1 "Running yamllint on the CI config file..."
-    yamllint .gitlab-ci.yml
+#     debug 1 "Running yamllint on the CI config file..."
+#     yamllint .gitlab-ci.yml
 
-    debug 0 "Skipping yamllint on serverless for now..."
-    #debug 1 "Running yamllint on the serverless config file..."
-    #yamllint serverless.yml
-}
+#     debug 0 "Skipping yamllint on serverless for now..."
+#     #debug 1 "Running yamllint on the serverless config file..."
+#     #yamllint serverless.yml
+# }
 
 env-tests() {
     debug 1 "No environment tests currently defined.  Proceeding..."
