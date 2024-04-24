@@ -1,8 +1,0 @@
-dist
-node_modules
-.vscode
-.eslintrc.js
-.nvm
-jest.config.js
-CHANGELOG.md
-README.md

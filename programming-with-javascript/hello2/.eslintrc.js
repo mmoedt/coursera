@@ -69,4 +69,15 @@ module.exports = {
             },
         },
     },
+    // See https://eslint.org/docs/latest/use/configure/migration-guide#ignoring-files
+    ignorePatterns: [
+        'dist',
+        'node_modules',
+        '.vscode',
+        '.eslintrc.js',
+        '.nvm',
+        'jest.config.js',
+        'CHANGELOG.md',
+        'README.md'
+    ]
 };

@@ -1,3 +1,4 @@
+// Start of main.js for project 'hello2'
 
 function main(args) {
     console.log('Hello, World\x21');
@@ -8,4 +9,3 @@ function main(args) {
 if (!globalThis.under_test) {
     main();
 }
-

@@ -6,9 +6,12 @@ Simplified setup here,
 - npm init -y
 - # then add a 'start' script to package.json, make misc updates
 - # then added entries for 'format' and 'lint' options...
-- npm install -D eslint prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-airbnb-base eslint-config-prettier eslint-plugin-import eslint-plugin-prettier
+- npm install -D eslint@^8.0.0
+- npm install -D prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-airbnb-base eslint-config-prettier eslint-plugin-import eslint-plugin-prettier
 - # yikes, are all the above needed or helpful?
 - copied over prettier and eslint config from previous projects..
 
+# To-Do: Set up ESLint to ignore prettier issues...
+#  (or maybe?: auto run prettier first?)
 
 
