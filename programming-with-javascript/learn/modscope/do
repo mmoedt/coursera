@@ -44,7 +44,7 @@ EOF
 do-run() {
     echo "------------------------------"
     # alternative?: npm run main
-    node src/main.js
+    node src/main.mjs
     echo "------------------------------"
 }
 

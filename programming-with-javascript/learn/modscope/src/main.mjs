@@ -4,4 +4,3 @@ const message = 'Hello, World!';
 console.log(message);
 
 say_hi();
-
