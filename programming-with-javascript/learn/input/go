@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ "$(which node)" = "" ]; then
+    echo "ERROR: 'node' not installed or available.  This script depends on Node.js being set up first."
+fi
+
+node main.mjs
