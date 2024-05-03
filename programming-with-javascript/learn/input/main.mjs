@@ -5,6 +5,8 @@ const message = 'Hello, World!';
 log(message);
 
 log('Running tests...');
-tests();
-
+const successful = tests();
+if (successful) {
+    log('Yay, all tests passed!');
+}
 log('Done!');
